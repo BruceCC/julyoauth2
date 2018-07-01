@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.leave.julyoauth2.dao.UserIdentityInfoDAO">
+    <resultMap type="org.leave.julyoauth2.domain.UserIdentityInfoBean" id="BaseResultMap">
+        <id column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="username" jdbcType="VARCHAR" property="userName"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="state" jdbcType="NUMERIC" property="state"/>
+    </resultMap>
+    
+    <sql id="BaseColumnList">
+        user_id, mobile, username, email, password, password, state
+    </sql>
+    <select id="getUserIdentityInfoByPK" parameterType="String" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from user_identity_info t
+        where t.user_id= #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getUserIdentityInfoByMobile" parameterType="String" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from user_identity_info t
+        where t.mobile= #{mobile,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getUserIdentityInfoByEmail" parameterType="String" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from user_identity_info t
+        where t.email= #{email,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getUserIdentityInfoByUserName" parameterType="String" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from user_identity_info t
+        where t.username= #{userName,jdbcType=VARCHAR}
+    </select>
+
+    
+ 
+</mapper>
