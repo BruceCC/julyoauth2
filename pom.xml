@@ -63,7 +63,7 @@
         </dependency>
 
         <!-- Spring security -->
-       <!-- <dependency>
+        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring.security.version}</version>
@@ -74,12 +74,12 @@
             <version>${spring.security.version}</version>
         </dependency>
 
-        &lt;!&ndash; Spring oauth2 &ndash;&gt;
+        <!-- Spring oauth2 -->
         <dependency>
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
             <version>${spring.security.oauth2.version}</version>
-        </dependency>-->
+        </dependency>
 
         <!-- Mybatis -->
         <dependency>
