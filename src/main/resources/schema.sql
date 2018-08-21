@@ -104,8 +104,8 @@ ROW_FORMAT=DYNAMIC
 
 DROP FUNCTION IF EXISTS `curr_seq_val`;
 
-CREATE DEFINER = `leave`@`%` FUNCTION `curr_seq_val`(`v_seq_name` varchar(128))
- RETURNS varchar(2048)
+CREATE DEFINER = CURRENT_USER FUNCTION `curr_seq_val`(`v_seq_name` varchar(128))
+ RETURNS varchar(2048)  CHARSET utf8
 BEGIN
 	DECLARE r_current_val BIGINT;
 	DECLARE r_max_val BIGINT;
@@ -120,8 +120,8 @@ END;
 
 DROP FUNCTION IF EXISTS `next_seq_val`;
 
-CREATE DEFINER = `leave`@`%` FUNCTION `next_seq_val`(`v_seq_name` varchar(128))
- RETURNS varchar(2048)
+CREATE DEFINER = CURRENT_USER FUNCTION `next_seq_val`(`v_seq_name` varchar(128))
+ RETURNS varchar(2048)  CHARSET utf8
 BEGIN
 	update july_sequence t set t.current_val = t.current_val + t.increment_val  where t.seq_name = v_seq_name;
 	return curr_seq_val(v_seq_name);
