@@ -104,8 +104,8 @@ ROW_FORMAT=DYNAMIC
 
 DROP FUNCTION IF EXISTS `curr_seq_val`;
 
-CREATE DEFINER = `leave`@`%` FUNCTION `curr_seq_val`(`v_seq_name` varchar(128))
- RETURNS varchar(2048)
+CREATE DEFINER = CURRENT_USER FUNCTION `curr_seq_val`(`v_seq_name` varchar(128))
+ RETURNS varchar(2048)  CHARSET utf8
 BEGIN
 	DECLARE r_current_val BIGINT;
 	DECLARE r_max_val BIGINT;
@@ -120,8 +120,8 @@ END;
 
 DROP FUNCTION IF EXISTS `next_seq_val`;
 
-CREATE DEFINER = `leave`@`%` FUNCTION `next_seq_val`(`v_seq_name` varchar(128))
- RETURNS varchar(2048)
+CREATE DEFINER = CURRENT_USER FUNCTION `next_seq_val`(`v_seq_name` varchar(128))
+ RETURNS varchar(2048)  CHARSET utf8
 BEGIN
 	update july_sequence t set t.current_val = t.current_val + t.increment_val  where t.seq_name = v_seq_name;
 	return curr_seq_val(v_seq_name);
@@ -152,3 +152,18 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 ROW_FORMAT=DYNAMIC
 ;
+
+
+CREATE TABLE `user_identity_info` (
+  `user_id` varchar(128) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
+  `username` varchar(128) NOT NULL,
+  `email` varchar(128) DEFAULT NULL,
+  `password` varchar(256) NOT NULL,
+  `state` char(1) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `index_user_id` (`user_id`),
+  UNIQUE KEY `index_mobile` (`mobile`),
+  UNIQUE KEY `index_username` (`username`),
+  KEY `index_email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
