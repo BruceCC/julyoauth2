@@ -152,6 +152,7 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 ROW_FORMAT=DYNAMIC
 ;
+<<<<<<< HEAD
 
 
 CREATE TABLE `user_identity_info` (
@@ -167,3 +168,5 @@ CREATE TABLE `user_identity_info` (
   UNIQUE KEY `index_username` (`username`),
   KEY `index_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+=======
+>>>>>>> e8670d100ec6d476ac2145921b03b6bfbcb1c54d
